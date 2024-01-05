@@ -11,11 +11,11 @@ namespace Prueba.Core.Interfaces
 {
     public interface IReservaHabitacionServices
     {
-        public ResponseQuery<ReservaHabitacionDto> ObtenerReservaHabitacion(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response);
+        public ResponseQuery<ReservaHabitacionDto> GetRoomReservation(int id, ResponseQuery<ReservaHabitacionDto> response);
 
-        public ResponseQuery<List<ReservaHabitacionDto>> ListaReservaHabitaciones(ReservaHabitacionDto request, ResponseQuery<List<ReservaHabitacionDto>> response);
+        public ResponseQuery<List<ReservaHabitacionDto>> GetListRoomReservation(int reservaId, ResponseQuery<List<ReservaHabitacionDto>> response);
 
-        public ResponseQuery<ReservaHabitacionDto> CrearReservaHabitacion(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response);
+        public ResponseQuery<ReservaHabitacionDto> CreateRoomReservation(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response);
 
     }
 }

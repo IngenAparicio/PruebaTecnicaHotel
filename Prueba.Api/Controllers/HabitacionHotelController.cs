@@ -18,48 +18,47 @@ namespace PruebaWebApi.Controllers
             habitacionHotelServices = _habitacionHotelServices;
         }
 
-        [HttpPost]
-        [Route("ObtenerHabitacionHotel")]
-        public IActionResult ObtenerHabitacionHotel(HabitacionHotelDto request)
+        [HttpGet]
+        [Route("GetHotelRoom")]
+        public ResponseQuery<HabitacionHotelDto> GetHotelRoom(int id)
         {
             ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.ObtenerHabitacionHotel(request, response);
-            return Ok(response.Result);
+            return habitacionHotelServices.GetHotelRoom(id, response);            
         }
 
-        [HttpPost]
-        [Route("ListaHabitacionesHotel")]
-        public IActionResult ListaHabitacionesHotel()
+        [HttpGet]
+        [Route("GetListHotelroom")]
+        public IActionResult GetListHotelroom()
         {
             ResponseQuery<List<HabitacionHotelDto>> response = new ResponseQuery<List<HabitacionHotelDto>>();
-            habitacionHotelServices.ListaHabitacionesHotel(response);
+            habitacionHotelServices.GetListHotelroom(response);
             return Ok(response.Result);
         }
 
         [HttpPost]
-        [Route("CrearHabitacionHotel")]
-        public IActionResult CrearHabitacionHotel(HabitacionHotelDto request)
+        [Route("CreateHotelRoom")]
+        public IActionResult CreateHotelRoom(HabitacionHotelDto request)
         {
             ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.CrearHabitacionHotel(request, response);
+            habitacionHotelServices.CreateHotelRoom(request, response);
             return Ok(response.Result);
         }
 
         [HttpPost]
-        [Route("EditarHabitacionHotel")]
-        public IActionResult EditarHabitacionHotel(HabitacionHotelDto request)
+        [Route("EditHotelRoom")]
+        public IActionResult EditHotelRoom(HabitacionHotelDto request)
         {
             ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.EditarHabitacionHotel(request, response);
+            habitacionHotelServices.EditHotelRoom(request, response);
             return Ok(response.Result);
         }
 
-        [HttpPost]
-        [Route("ActivoHabitacionHotel")]
-        public IActionResult ActivoHabitacionHotel(HabitacionHotelDto request)
+        [HttpGet]
+        [Route("ActiveHotelRoom")]
+        public IActionResult ActiveHotelRoom(int id)
         {
             ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.ActivoHabitacionHotel(request, response);
+            habitacionHotelServices.ActiveHotelRoom(id, response);
             return Ok(response.Result);
         }
 

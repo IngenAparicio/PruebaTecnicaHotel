@@ -4,6 +4,7 @@ using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
@@ -18,48 +19,47 @@ namespace PruebaWebApi.Controllers
             hotelServices = _hotelServices;
         }
 
-        [HttpPost]
-        [Route("ObtenerHotel")]
-        public IActionResult ObtenerHotel(HotelDto request)
+        [HttpGet]
+        [Route("GetHotel")]
+        public ResponseQuery<HotelDto> GetHotel(int id)
         {
             ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.ObtenerHotel(request, response);
-            return Ok(response.Result);
+            return hotelServices.GetHotel(id, response);            
         }
 
-        [HttpPost]
-        [Route("ListaHoteles")]
-        public IActionResult ListaHoteles()
+        [HttpGet]
+        [Route("GetListHotel")]
+        public IActionResult GetListHotel()
         {
             ResponseQuery<List<HotelDto>> response = new ResponseQuery<List<HotelDto>>();
-            hotelServices.ListaHoteles(response);
+            hotelServices.GetListHotel(response);
             return Ok(response.Result);
         }
 
         [HttpPost]
-        [Route("CrearHotel")]
-        public IActionResult CrearHotel(HotelDto request)
+        [Route("CreateHotel")]
+        public IActionResult CreateHotel(HotelDto request)
         {
             ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.CrearHotel(request, response);
+            hotelServices.CreateHotel(request, response);
             return Ok(response.Result);
         }
 
         [HttpPost]
-        [Route("EditarHotel")]
-        public IActionResult EditarHotel(HotelDto request)
+        [Route("UpdateHotel")]
+        public IActionResult UpdateHotel(HotelDto request)
         {
             ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.EditarHotel(request, response);
+            hotelServices.UpdateHotel(request, response);
             return Ok(response.Result);
         }
 
-        [HttpPost]
-        [Route("ActivoHotel")]
-        public IActionResult ActivoHotel(HotelDto request)
+        [HttpGet]
+        [Route("ActiveHotel")]
+        public IActionResult ActiveHotel(int id)
         {
             ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.ActivoHotel(request, response);
+            hotelServices.ActiveHotel(id, response);
             return Ok(response.Result);
         }
 

@@ -18,30 +18,28 @@ namespace PruebaWebApi.Controllers
             reservaHabitacionServices = _reservaHabitacionServices;
         }
 
-        [HttpPost]
-        [Route("ObtenerReservaHabitacion")]
-        public IActionResult ObtenerReservaHabitacion(ReservaHabitacionDto request)
+        [HttpGet]
+        [Route("GetRoomReservation")]
+        public ResponseQuery<ReservaHabitacionDto> GetRoomReservation(int id)
         {
             ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
-            reservaHabitacionServices.ObtenerReservaHabitacion(request, response);
-            return Ok(response.Result);
+            return reservaHabitacionServices.GetRoomReservation(id, response);            
         }
 
-        [HttpPost]
-        [Route("ListaReservaHabitaciones")]
-        public IActionResult ListaReservaHabitaciones(ReservaHabitacionDto request)
+        [HttpGet]
+        [Route("GetListRoomReservation")]
+        public ResponseQuery<List<ReservaHabitacionDto>> GetListRoomReservation(int reservaId)
         {
             ResponseQuery<List<ReservaHabitacionDto>> response = new ResponseQuery<List<ReservaHabitacionDto>>();
-            reservaHabitacionServices.ListaReservaHabitaciones(request, response);
-            return Ok(response.Result);
+            return reservaHabitacionServices.GetListRoomReservation(reservaId, response);            
         }
 
         [HttpPost]
-        [Route("CrearReservaHabitacion")]
-        public IActionResult CrearReservaHabitacion(ReservaHabitacionDto request)
+        [Route("CreateRoomReservation")]
+        public IActionResult CreateRoomReservation(ReservaHabitacionDto request)
         {
             ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
-            reservaHabitacionServices.CrearReservaHabitacion(request, response);
+            reservaHabitacionServices.CreateRoomReservation(request, response);
             return Ok(response.Result);
         }
 

@@ -24,10 +24,10 @@ namespace Prueba.infraestructure.Access
             mapper = _mapper;
         }
 
-        public HabitacionHotelDto ObtenerHabitacionHotel(HabitacionHotelDto request)
+        public HabitacionHotelDto GetHotelRoom(int id)
         {
             HabitacionHotel Habitacionhotel = new HabitacionHotel();
-            Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == request.Id);
+            Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == id);
             if (Habitacionhotel != null)
             {
                 return mapper.Map<HabitacionHotelDto>(Habitacionhotel);
@@ -39,7 +39,7 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public List<HabitacionHotelDto> ListaHabitacionesHotel()
+        public List<HabitacionHotelDto> GetListHotelroom()
         {
             
             List<HabitacionHotel> entidad = context.HabitacionHotel.ToList();
@@ -54,7 +54,7 @@ namespace Prueba.infraestructure.Access
                 
         }
 
-        public HabitacionHotelDto CrearHabitacionHotel(HabitacionHotelDto request)
+        public HabitacionHotelDto CreateHotelRoom(HabitacionHotelDto request)
         {
             var Habitacionhotel = mapper.Map<HabitacionHotel>(request);
             context.HabitacionHotel.Add(Habitacionhotel);
@@ -63,7 +63,7 @@ namespace Prueba.infraestructure.Access
             return HabitacionhotelResult;
         }
 
-        public HabitacionHotelDto EditarHabitacionHotel(HabitacionHotelDto request)
+        public HabitacionHotelDto EditHotelRoom(HabitacionHotelDto request)
         {
 
             var Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == request.Id);
@@ -85,19 +85,21 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public HabitacionHotelDto ActivoHabitacionHotel(HabitacionHotelDto request)
+        public HabitacionHotelDto ActiveHotelRoom(int id)
         {
 
-            var Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == request.Id);
-            request.Activo = !Habitacionhotel.Activo;
+            var Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == id);
+            HabitacionHotel HotelRoomTemp = new HabitacionHotel();
+            HotelRoomTemp = Habitacionhotel;
+            HotelRoomTemp.Activo = !Habitacionhotel.Activo;
             if (Habitacionhotel != null)
             {
                 // Campos a actualizar
-                FrameworkTypeUtility.SetProperties(request, Habitacionhotel);
+                FrameworkTypeUtility.SetProperties(HotelRoomTemp, Habitacionhotel);
 
                 // Guardar cambios
                 context.SaveChanges();
-                var HabitacionhotelResult = mapper.Map<HabitacionHotelDto>(request);
+                var HabitacionhotelResult = mapper.Map<HabitacionHotelDto>(HotelRoomTemp);
                 return HabitacionhotelResult;
             }
             else

@@ -10,11 +10,11 @@ namespace Prueba.Core.Interfaces
 {
     public interface IHuespedesReservaDataAccess
     {
-        public HuespedesReservaDto ObtenerHuespedesReserva(HuespedesReservaDto request);
+        public HuespedesReservaDto GetGuestReserv(int id);
 
-        public List<HuespedesReservaDto> ListaHuespedesReserva(HuespedesReservaDto request);
+        public List<HuespedesReservaDto> GetListGuestReserv(int reservaId);
 
-        public HuespedesReservaDto CrearHuespedesReserva(HuespedesReservaDto request);
+        public HuespedesReservaDto CreateGuestReserv(HuespedesReservaDto request);
 
 
     }

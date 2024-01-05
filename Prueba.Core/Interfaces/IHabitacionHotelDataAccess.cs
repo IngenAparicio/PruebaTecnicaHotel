@@ -9,15 +9,15 @@ namespace Prueba.Core.Interfaces
 {
     public interface IHabitacionHotelDataAccess
     {
-        public HabitacionHotelDto ObtenerHabitacionHotel(HabitacionHotelDto request);
+        public HabitacionHotelDto GetHotelRoom(int id);
 
-        public List<HabitacionHotelDto> ListaHabitacionesHotel();
+        public List<HabitacionHotelDto> GetListHotelroom();
 
-        public HabitacionHotelDto CrearHabitacionHotel(HabitacionHotelDto request);
+        public HabitacionHotelDto CreateHotelRoom(HabitacionHotelDto request);
 
-        public HabitacionHotelDto EditarHabitacionHotel(HabitacionHotelDto request);
+        public HabitacionHotelDto EditHotelRoom(HabitacionHotelDto request);
 
-        public HabitacionHotelDto ActivoHabitacionHotel(HabitacionHotelDto request);
+        public HabitacionHotelDto ActiveHotelRoom(int id);
 
     }
 }

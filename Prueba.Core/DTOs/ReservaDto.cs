@@ -14,5 +14,6 @@ namespace Prueba.Core.DTOs
         public double? ValorTotal { get; set; }
         public string NombreEmergencia { get; set; }
         public string TelefonoEmergencia { get; set; }
+        
     }
 }

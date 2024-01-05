@@ -24,10 +24,10 @@ namespace Prueba.infraestructure.Access
             mapper = _mapper;
         }
 
-        public ReservaDto ObtenerReserva(ReservaDto request)
+        public ReservaDto GetReservation(int id)
         {
             Reserva reserva = new Reserva();
-            reserva = context.Reserva.FirstOrDefault(x => x.Id == request.Id);
+            reserva = context.Reserva.FirstOrDefault(x => x.Id == id);
             if (reserva != null)
             {
                 return mapper.Map<ReservaDto>(reserva);
@@ -39,23 +39,21 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public List<ObtenerReservasDto> ListaReservas(ObtenerReservasDto request)
+        public List<ReservaDto> GetListReservation(int hotelId)
         {
-            StringBuilder query = new StringBuilder("exec [dbo].[ObtenerReservas] ");
-            query.Append($"@HotelId={request.HotelId}");
-            List<ObtenerReservas> entidad = context.ObtenerReservas.FromSqlRaw(query.ToString()).ToList();            
-            if(entidad != null && entidad.Count > 0)
+            List<Reserva> entidad = context.Reserva.Where(x => x.HotelId == hotelId).ToList();                        
+            if (entidad != null && entidad.Count > 0)
             {
-                return mapper.Map<List<ObtenerReservasDto>>(entidad);
+                return mapper.Map<List<ReservaDto>>(entidad);
             }
             else
             {
-                return new List<ObtenerReservasDto>();
+                return new List<ReservaDto>();
             }
                 
         }
 
-        public ReservaDto CrearReserva(ReservaDto request)
+        public ReservaDto CreateReservation(ReservaDto request)
         {
             var reserva = mapper.Map<Reserva>(request);
             context.Reserva.Add(reserva);

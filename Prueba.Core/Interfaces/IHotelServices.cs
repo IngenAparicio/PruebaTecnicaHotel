@@ -11,15 +11,15 @@ namespace Prueba.Core.Interfaces
 {
     public interface IHotelServices
     {
-        public ResponseQuery<HotelDto> ObtenerHotel(HotelDto request, ResponseQuery<HotelDto> response);
+        public ResponseQuery<HotelDto> GetHotel(int id, ResponseQuery<HotelDto> response);
 
-        public ResponseQuery<List<HotelDto>> ListaHoteles(ResponseQuery<List<HotelDto>> response);
+        public ResponseQuery<List<HotelDto>> GetListHotel(ResponseQuery<List<HotelDto>> response);
 
-        public ResponseQuery<HotelDto> CrearHotel(HotelDto request, ResponseQuery<HotelDto> response);
+        public ResponseQuery<HotelDto> CreateHotel(HotelDto request, ResponseQuery<HotelDto> response);
 
-        public ResponseQuery<HotelDto> EditarHotel(HotelDto request, ResponseQuery<HotelDto> response);
+        public ResponseQuery<HotelDto> UpdateHotel(HotelDto request, ResponseQuery<HotelDto> response);
 
-        public ResponseQuery<HotelDto> ActivoHotel(HotelDto request, ResponseQuery<HotelDto> response);
+        public ResponseQuery<HotelDto> ActiveHotel(int id, ResponseQuery<HotelDto> response);
 
     }
 }

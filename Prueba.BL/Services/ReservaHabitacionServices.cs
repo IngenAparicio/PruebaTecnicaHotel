@@ -17,11 +17,11 @@ namespace Prueba.BL.Services
             reservaHabitacionDataAccess = _reservaHabitacionDataAccess;
         }
 
-        public ResponseQuery<ReservaHabitacionDto> ObtenerReservaHabitacion(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response)
+        public ResponseQuery<ReservaHabitacionDto> GetRoomReservation(int id, ResponseQuery<ReservaHabitacionDto> response)
         {
             try
             {
-                response.Result = reservaHabitacionDataAccess.ObtenerReservaHabitacion(request);
+                response.Result = reservaHabitacionDataAccess.GetRoomReservation(id);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -33,11 +33,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<List<ReservaHabitacionDto>> ListaReservaHabitaciones(ReservaHabitacionDto request, ResponseQuery<List<ReservaHabitacionDto>> response)
+        public ResponseQuery<List<ReservaHabitacionDto>> GetListRoomReservation(int reservaId, ResponseQuery<List<ReservaHabitacionDto>> response)
         {
             try
             {
-                response.Result = reservaHabitacionDataAccess.ListaReservaHabitaciones(request);
+                response.Result = reservaHabitacionDataAccess.GetListRoomReservation(reservaId);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -49,11 +49,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<ReservaHabitacionDto> CrearReservaHabitacion(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response)
+        public ResponseQuery<ReservaHabitacionDto> CreateRoomReservation(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response)
         {
             try
             {
-                response.Result = reservaHabitacionDataAccess.CrearReservaHabitacion(request);
+                response.Result = reservaHabitacionDataAccess.CreateRoomReservation(request);
                 response.Exitosos = true;
             }
             catch (Exception ex)

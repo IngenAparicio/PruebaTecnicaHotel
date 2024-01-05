@@ -24,10 +24,10 @@ namespace Prueba.infraestructure.Access
             mapper = _mapper;
         }
 
-        public ReservaHabitacionDto ObtenerReservaHabitacion(ReservaHabitacionDto request)
+        public ReservaHabitacionDto GetRoomReservation(int id)
         {
             ReservaHabitacion reservaHabitacion = new ReservaHabitacion();
-            reservaHabitacion = context.ReservaHabitacion.FirstOrDefault(x => x.Id == request.Id);
+            reservaHabitacion = context.ReservaHabitacion.FirstOrDefault(x => x.Id == id);
             if (reservaHabitacion != null)
             {
                 return mapper.Map<ReservaHabitacionDto>(reservaHabitacion);
@@ -39,9 +39,9 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public List<ReservaHabitacionDto> ListaReservaHabitaciones(ReservaHabitacionDto request)
+        public List<ReservaHabitacionDto> GetListRoomReservation(int reservaId)
         {            
-            List<ReservaHabitacion> entidad = context.ReservaHabitacion.Where(x => x.ReservaId == request.ReservaId).ToList();            
+            List<ReservaHabitacion> entidad = context.ReservaHabitacion.Where(x => x.ReservaId == reservaId).ToList();            
             if(entidad != null && entidad.Count > 0)
             {
                 return mapper.Map<List<ReservaHabitacionDto>>(entidad);
@@ -53,7 +53,7 @@ namespace Prueba.infraestructure.Access
                 
         }
 
-        public ReservaHabitacionDto CrearReservaHabitacion(ReservaHabitacionDto request)
+        public ReservaHabitacionDto CreateRoomReservation(ReservaHabitacionDto request)
         {
             var reservaHabitacion = mapper.Map<ReservaHabitacion>(request);
             context.ReservaHabitacion.Add(reservaHabitacion);

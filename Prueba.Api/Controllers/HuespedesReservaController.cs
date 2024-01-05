@@ -18,30 +18,28 @@ namespace PruebaWebApi.Controllers
             huespedesReservaServices = _huespedesReservaServices;
         }
 
-        [HttpPost]
-        [Route("ObtenerHuespedesReserva")]
-        public IActionResult ObtenerHuespedesReserva(HuespedesReservaDto request)
+        [HttpGet]
+        [Route("GetGuestReserv")]
+        public ResponseQuery<HuespedesReservaDto> GetGuestReserv(int id)
         {
             ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
-            huespedesReservaServices.ObtenerHuespedesReserva(request, response);
-            return Ok(response.Result);
+            return huespedesReservaServices.GetGuestReserv(id, response);            
         }
 
-        [HttpPost]
-        [Route("ListaHuespedesReserva")]
-        public IActionResult ListaHuespedesReserva(HuespedesReservaDto request)
+        [HttpGet]
+        [Route("GetListGuestReserv")]
+        public ResponseQuery<List<HuespedesReservaDto>> GetListGuestReserv(int reservaId)
         {
             ResponseQuery<List<HuespedesReservaDto>> response = new ResponseQuery<List<HuespedesReservaDto>>();
-            huespedesReservaServices.ListaHuespedesReserva(request, response);
-            return Ok(response.Result);
+            return huespedesReservaServices.GetListGuestReserv(reservaId, response);            
         }
 
         [HttpPost]
-        [Route("CrearHuespedesReserva")]
-        public IActionResult CrearHuespedesReserva(HuespedesReservaDto request)
+        [Route("CreateGuestReserv")]
+        public IActionResult CreateGuestReserv(HuespedesReservaDto request)
         {
             ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
-            huespedesReservaServices.CrearHuespedesReserva(request, response);
+            huespedesReservaServices.CreateGuestReserv(request, response);
             return Ok(response.Result);
         }
 

@@ -17,11 +17,11 @@ namespace Prueba.BL.Services
             hotelDataAccess = _hotelDataAccess;
         }
 
-        public ResponseQuery<HotelDto> ObtenerHotel(HotelDto request, ResponseQuery<HotelDto> response)
+        public ResponseQuery<HotelDto> GetHotel(int id, ResponseQuery<HotelDto> response)
         {
             try
             {
-                response.Result = hotelDataAccess.ObtenerHotel(request);
+                response.Result = hotelDataAccess.GetHotel(id);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -33,11 +33,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<List<HotelDto>> ListaHoteles(ResponseQuery<List<HotelDto>> response)
+        public ResponseQuery<List<HotelDto>> GetListHotel(ResponseQuery<List<HotelDto>> response)
         {
             try
             {
-                response.Result = hotelDataAccess.ListaHoteles();
+                response.Result = hotelDataAccess.GetListHotel();
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -49,11 +49,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<HotelDto> CrearHotel(HotelDto request, ResponseQuery<HotelDto> response)
+        public ResponseQuery<HotelDto> CreateHotel(HotelDto request, ResponseQuery<HotelDto> response)
         {
             try
             {
-                response.Result = hotelDataAccess.CrearHotel(request);
+                response.Result = hotelDataAccess.CreateHotel(request);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -65,11 +65,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<HotelDto> EditarHotel(HotelDto request, ResponseQuery<HotelDto> response)
+        public ResponseQuery<HotelDto> UpdateHotel(HotelDto request, ResponseQuery<HotelDto> response)
         {
             try
             {
-                response.Result = hotelDataAccess.EditarHotel(request);
+                response.Result = hotelDataAccess.UpdateHotel(request);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -81,11 +81,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<HotelDto> ActivoHotel(HotelDto request, ResponseQuery<HotelDto> response)
+        public ResponseQuery<HotelDto> ActiveHotel(int id, ResponseQuery<HotelDto> response)
         {
             try
             {                
-                response.Result = hotelDataAccess.ActivoHotel(request);
+                response.Result = hotelDataAccess.ActiveHotel(id);
                 response.Exitosos = true;
             }
             catch (Exception ex)

@@ -26,11 +26,11 @@ namespace Prueba.BL.Services
             hotelDataAccess = _hotelDataAccess;
         }        
 
-        public ResponseQuery<HuespedesReservaDto> ObtenerHuespedesReserva(HuespedesReservaDto request, ResponseQuery<HuespedesReservaDto> response)
+        public ResponseQuery<HuespedesReservaDto> GetGuestReserv(int id, ResponseQuery<HuespedesReservaDto> response)
         {
             try
             {
-                response.Result = huespedesReservaDataAccess.ObtenerHuespedesReserva(request);
+                response.Result = huespedesReservaDataAccess.GetGuestReserv(id);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -42,11 +42,11 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<List<HuespedesReservaDto>> ListaHuespedesReserva(HuespedesReservaDto request, ResponseQuery<List<HuespedesReservaDto>> response)
+        public ResponseQuery<List<HuespedesReservaDto>> GetListGuestReserv(int reservaId, ResponseQuery<List<HuespedesReservaDto>> response)
         {
             try
             {
-                response.Result = huespedesReservaDataAccess.ListaHuespedesReserva(request);
+                response.Result = huespedesReservaDataAccess.GetListGuestReserv(reservaId);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -58,12 +58,12 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<HuespedesReservaDto> CrearHuespedesReserva(HuespedesReservaDto request, ResponseQuery<HuespedesReservaDto> response)
+        public ResponseQuery<HuespedesReservaDto> CreateGuestReserv(HuespedesReservaDto request, ResponseQuery<HuespedesReservaDto> response)
         {
             try
             {
-                response.Result = huespedesReservaDataAccess.CrearHuespedesReserva(request);
-                EnviarCorreo(request);
+                response.Result = huespedesReservaDataAccess.CreateGuestReserv(request);
+                SendMail(request);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -75,14 +75,14 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        private bool EnviarCorreo(HuespedesReservaDto request)
+        private bool SendMail(HuespedesReservaDto request)
         {
             var reserva = new ReservaDto();
             reserva.Id = request.ReservaId.Value;
-            reserva = reservaDataAccess.ObtenerReserva(reserva);
+            reserva = reservaDataAccess.GetReservation(reserva.Id);
             var hotel = new HotelDto();
             hotel.Id = reserva.HotelId.Value;
-            hotel = hotelDataAccess.ObtenerHotel(hotel);
+            hotel = hotelDataAccess.GetHotel(hotel.Id);
             MailMessage message = new MailMessage();
             string from = "hotelPrueba27@outlook.com";
             string smtpCliente = "smtp-mail.outlook.com";

@@ -11,11 +11,11 @@ namespace Prueba.Core.Interfaces
 {
     public interface IReservaServices
     {
-        public ResponseQuery<ReservaDto> ObtenerReserva(ReservaDto request, ResponseQuery<ReservaDto> response);
+        public ResponseQuery<ReservaDto> GetReservation(int id, ResponseQuery<ReservaDto> response);
 
-        public ResponseQuery<List<ObtenerReservasDto>> ListaReservas(ObtenerReservasDto request, ResponseQuery<List<ObtenerReservasDto>> response);
+        public ResponseQuery<List<ReservaDto>> GetListReservation(int hotelId, ResponseQuery<List<ReservaDto>> response);
 
-        public ResponseQuery<ReservaDto> CrearReserva(ReservaDto request, ResponseQuery<ReservaDto> response);
+        public ResponseQuery<ReservaDto> CreateReservation(ReservaDto request, ResponseQuery<ReservaDto> response);
 
     }
 }

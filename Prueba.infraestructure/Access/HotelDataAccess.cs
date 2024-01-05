@@ -24,10 +24,10 @@ namespace Prueba.infraestructure.Access
             mapper = _mapper;
         }
 
-        public HotelDto ObtenerHotel(HotelDto request)
+        public HotelDto GetHotel(int id)
         {
             Hotel hotel = new Hotel();
-            hotel = context.Hotel.FirstOrDefault(x => x.Id == request.Id);
+            hotel = context.Hotel.FirstOrDefault(x => x.Id == id);
             if (hotel != null)
             {
                 return mapper.Map<HotelDto>(hotel);
@@ -39,7 +39,7 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public List<HotelDto> ListaHoteles()
+        public List<HotelDto> GetListHotel()
         {
             
             List<Hotel> entidad = context.Hotel.ToList();
@@ -54,7 +54,7 @@ namespace Prueba.infraestructure.Access
                 
         }
 
-        public HotelDto CrearHotel(HotelDto request)
+        public HotelDto CreateHotel(HotelDto request)
         {
             var hotel = mapper.Map<Hotel>(request);
             context.Hotel.Add(hotel);
@@ -63,7 +63,7 @@ namespace Prueba.infraestructure.Access
             return hotelResult;
         }
 
-        public HotelDto EditarHotel(HotelDto request)
+        public HotelDto UpdateHotel(HotelDto request)
         {
 
             var hotel = context.Hotel.FirstOrDefault(x => x.Id == request.Id);
@@ -85,19 +85,21 @@ namespace Prueba.infraestructure.Access
             
         }
 
-        public HotelDto ActivoHotel(HotelDto request)
+        public HotelDto ActiveHotel(int id)
         {
 
-            var hotel = context.Hotel.FirstOrDefault(x => x.Id == request.Id);
-            request.Activo = !hotel.Activo;
+            var hotel = context.Hotel.FirstOrDefault(x => x.Id == id);
+            Hotel newHotel = new Hotel();
+            newHotel = hotel;
+            newHotel.Activo = !hotel.Activo;
             if (hotel != null)
             {
                 // Campos a actualizar
-                FrameworkTypeUtility.SetProperties(request, hotel);
+                FrameworkTypeUtility.SetProperties(newHotel, hotel);
 
                 // Guardar cambios
                 context.SaveChanges();
-                var HotelResult = mapper.Map<HotelDto>(request);
+                var HotelResult = mapper.Map<HotelDto>(newHotel);
                 return HotelResult;
             }
             else

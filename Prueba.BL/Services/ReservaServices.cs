@@ -17,11 +17,11 @@ namespace Prueba.BL.Services
             reservaDataAccess = _reservaDataAccess;
         }
 
-        public ResponseQuery<ReservaDto> ObtenerReserva(ReservaDto request, ResponseQuery<ReservaDto> response)
+        public ResponseQuery<ReservaDto> GetReservation(int id, ResponseQuery<ReservaDto> response)
         {
             try
             {
-                response.Result = reservaDataAccess.ObtenerReserva(request);
+                response.Result = reservaDataAccess.GetReservation(id);
                 response.Exitosos = true;
             }
             catch (Exception ex)
@@ -33,27 +33,28 @@ namespace Prueba.BL.Services
             return response;
         }
 
-        public ResponseQuery<List<ObtenerReservasDto>> ListaReservas(ObtenerReservasDto request, ResponseQuery<List<ObtenerReservasDto>> response)
+        public ResponseQuery<List<ReservaDto>> GetListReservation(int hotelId, ResponseQuery<List<ReservaDto>> response)
         {
             try
             {
-                response.Result = reservaDataAccess.ListaReservas(request);
+
+                response.Result = reservaDataAccess.GetListReservation(hotelId);
                 response.Exitosos = true;
             }
             catch (Exception ex)
             {
-                response.Result = new List<ObtenerReservasDto>();
+                response.Result = new List<ReservaDto>();
                 response.Mensaje = ex.Message;
                 response.Exitosos = false;
             }
             return response;
         }
 
-        public ResponseQuery<ReservaDto> CrearReserva(ReservaDto request, ResponseQuery<ReservaDto> response)
+        public ResponseQuery<ReservaDto> CreateReservation(ReservaDto request, ResponseQuery<ReservaDto> response)
         {
             try
             {
-                response.Result = reservaDataAccess.CrearReserva(request);
+                response.Result = reservaDataAccess.CreateReservation(request);
                 response.Exitosos = true;
             }
             catch (Exception ex)

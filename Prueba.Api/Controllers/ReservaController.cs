@@ -18,30 +18,28 @@ namespace PruebaWebApi.Controllers
             reservaServices = _reservaServices;
         }
 
-        [HttpPost]
-        [Route("ObtenerReserva")]
-        public IActionResult ObtenerReserva(ReservaDto request)
+        [HttpGet]
+        [Route("GetReservation")]
+        public ResponseQuery<ReservaDto> GetReservation(int id)
         {
             ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
-            reservaServices.ObtenerReserva(request, response);
-            return Ok(response.Result);
+            return reservaServices.GetReservation(id, response);            
+        }
+
+        [HttpGet]
+        [Route("GetListReservation")]
+        public ResponseQuery<List<ReservaDto>> GetListReservation(int HotelId)
+        {
+            ResponseQuery<List<ReservaDto>> response = new ResponseQuery<List<ReservaDto>>();
+            return reservaServices.GetListReservation(HotelId, response);            
         }
 
         [HttpPost]
-        [Route("ListaReservas")]
-        public IActionResult ListaReservas(ObtenerReservasDto request)
-        {
-            ResponseQuery<List<ObtenerReservasDto>> response = new ResponseQuery<List<ObtenerReservasDto>>();
-            reservaServices.ListaReservas(request, response);
-            return Ok(response.Result);
-        }
-
-        [HttpPost]
-        [Route("CrearReserva")]
-        public IActionResult CrearReserva(ReservaDto request)
+        [Route("CreateReservation")]
+        public IActionResult CreateReservation(ReservaDto request)
         {
             ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
-            reservaServices.CrearReserva(request, response);
+            reservaServices.CreateReservation(request, response);
             return Ok(response.Result);
         }
 
