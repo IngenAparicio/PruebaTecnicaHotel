@@ -4,6 +4,7 @@ using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
@@ -19,28 +20,37 @@ namespace PruebaWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetRoomReservation")]
-        public ResponseQuery<ReservaHabitacionDto> GetRoomReservation(int id)
+        [Route(nameof(ReservaHabitacionController.GetRoomReservation))]
+        public async Task<ResponseQuery<ReservaHabitacionDto>> GetRoomReservation(int id)
         {
-            ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
-            return reservaHabitacionServices.GetRoomReservation(id, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
+                return reservaHabitacionServices.GetRoomReservation(id, response);
+            });
         }
 
         [HttpGet]
-        [Route("GetListRoomReservation")]
-        public ResponseQuery<List<ReservaHabitacionDto>> GetListRoomReservation(int reservaId)
+        [Route(nameof(ReservaHabitacionController.GetListRoomReservation))]
+        public async Task<ResponseQuery<List<ReservaHabitacionDto>>> GetListRoomReservation(int reservaId)
         {
-            ResponseQuery<List<ReservaHabitacionDto>> response = new ResponseQuery<List<ReservaHabitacionDto>>();
-            return reservaHabitacionServices.GetListRoomReservation(reservaId, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<List<ReservaHabitacionDto>> response = new ResponseQuery<List<ReservaHabitacionDto>>();
+                return reservaHabitacionServices.GetListRoomReservation(reservaId, response);
+            });
         }
 
         [HttpPost]
-        [Route("CreateRoomReservation")]
-        public IActionResult CreateRoomReservation(ReservaHabitacionDto request)
+        [Route(nameof(ReservaHabitacionController.CreateRoomReservation))]
+        public async Task<IActionResult> CreateRoomReservation(ReservaHabitacionDto request)
         {
-            ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
-            reservaHabitacionServices.CreateRoomReservation(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<ReservaHabitacionDto> response = new ResponseQuery<ReservaHabitacionDto>();
+                reservaHabitacionServices.CreateRoomReservation(request, response);
+                return Ok(response.Result);
+            });
         }
 
 

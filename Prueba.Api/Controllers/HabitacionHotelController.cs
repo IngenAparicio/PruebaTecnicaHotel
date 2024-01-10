@@ -4,6 +4,7 @@ using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
@@ -19,47 +20,62 @@ namespace PruebaWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetHotelRoom")]
-        public ResponseQuery<HabitacionHotelDto> GetHotelRoom(int id)
+        [Route(nameof(HabitacionHotelController.GetHotelRoom))]
+        public async Task<ResponseQuery<HabitacionHotelDto>> GetHotelRoom(int id)
         {
-            ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            return habitacionHotelServices.GetHotelRoom(id, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
+                return habitacionHotelServices.GetHotelRoom(id, response);
+            });
         }
 
         [HttpGet]
-        [Route("GetListHotelroom")]
-        public IActionResult GetListHotelroom()
+        [Route(nameof(HabitacionHotelController.GetListHotelroom))]
+        public async Task<IActionResult> GetListHotelroom()
         {
-            ResponseQuery<List<HabitacionHotelDto>> response = new ResponseQuery<List<HabitacionHotelDto>>();
-            habitacionHotelServices.GetListHotelroom(response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<List<HabitacionHotelDto>> response = new ResponseQuery<List<HabitacionHotelDto>>();
+                habitacionHotelServices.GetListHotelroom(response);
+                return Ok(response.Result);
+            });
         }
 
         [HttpPost]
-        [Route("CreateHotelRoom")]
-        public IActionResult CreateHotelRoom(HabitacionHotelDto request)
+        [Route(nameof(HabitacionHotelController.CreateHotelRoom))]
+        public async Task<IActionResult> CreateHotelRoom(HabitacionHotelDto request)
         {
-            ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.CreateHotelRoom(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
+                habitacionHotelServices.CreateHotelRoom(request, response);
+                return Ok(response.Result);
+            });
         }
 
         [HttpPost]
-        [Route("EditHotelRoom")]
-        public IActionResult EditHotelRoom(HabitacionHotelDto request)
+        [Route(nameof(HabitacionHotelController.EditHotelRoom))]
+        public async Task<IActionResult> EditHotelRoom(HabitacionHotelDto request)
         {
-            ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.EditHotelRoom(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
+                habitacionHotelServices.EditHotelRoom(request, response);
+                return Ok(response.Result);
+            });
         }
 
         [HttpGet]
-        [Route("ActiveHotelRoom")]
-        public IActionResult ActiveHotelRoom(int id)
+        [Route(nameof(HabitacionHotelController.ActiveHotelRoom))]
+        public async Task<IActionResult> ActiveHotelRoom(int id)
         {
-            ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
-            habitacionHotelServices.ActiveHotelRoom(id, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
+                habitacionHotelServices.ActiveHotelRoom(id, response);
+                return Ok(response.Result);
+            });
         }
 
     }

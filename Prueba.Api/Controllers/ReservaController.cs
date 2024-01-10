@@ -4,6 +4,7 @@ using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
@@ -19,28 +20,37 @@ namespace PruebaWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReservation")]
-        public ResponseQuery<ReservaDto> GetReservation(int id)
+        [Route(nameof(ReservaController.GetReservation))]
+        public async Task<ResponseQuery<ReservaDto>> GetReservation(int id)
         {
-            ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
-            return reservaServices.GetReservation(id, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
+                return reservaServices.GetReservation(id, response);
+            });
         }
 
         [HttpGet]
-        [Route("GetListReservation")]
-        public ResponseQuery<List<ReservaDto>> GetListReservation(int HotelId)
+        [Route(nameof(ReservaController.GetListReservation))]
+        public async Task<ResponseQuery<List<ReservaDto>>> GetListReservation(int HotelId)
         {
-            ResponseQuery<List<ReservaDto>> response = new ResponseQuery<List<ReservaDto>>();
-            return reservaServices.GetListReservation(HotelId, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<List<ReservaDto>> response = new ResponseQuery<List<ReservaDto>>();
+                return reservaServices.GetListReservation(HotelId, response);
+            });
         }
 
         [HttpPost]
-        [Route("CreateReservation")]
-        public IActionResult CreateReservation(ReservaDto request)
+        [Route(nameof(ReservaController.CreateReservation))]
+        public async Task<IActionResult> CreateReservation(ReservaDto request)
         {
-            ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
-            reservaServices.CreateReservation(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<ReservaDto> response = new ResponseQuery<ReservaDto>();
+                reservaServices.CreateReservation(request, response);
+                return Ok(response.Result);
+            });
         }
 
 

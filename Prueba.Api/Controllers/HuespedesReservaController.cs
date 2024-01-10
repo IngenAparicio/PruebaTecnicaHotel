@@ -4,6 +4,7 @@ using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
 {
@@ -19,28 +20,37 @@ namespace PruebaWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetGuestReserv")]
-        public ResponseQuery<HuespedesReservaDto> GetGuestReserv(int id)
+        [Route(nameof(HuespedesReservaController.GetGuestReserv))]
+        public async Task<ResponseQuery<HuespedesReservaDto>> GetGuestReserv(int id)
         {
-            ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
-            return huespedesReservaServices.GetGuestReserv(id, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
+                return huespedesReservaServices.GetGuestReserv(id, response);
+            });
         }
 
         [HttpGet]
-        [Route("GetListGuestReserv")]
-        public ResponseQuery<List<HuespedesReservaDto>> GetListGuestReserv(int reservaId)
+        [Route(nameof(HuespedesReservaController.GetListGuestReserv))]
+        public async Task<ResponseQuery<List<HuespedesReservaDto>>> GetListGuestReserv(int reservaId)
         {
-            ResponseQuery<List<HuespedesReservaDto>> response = new ResponseQuery<List<HuespedesReservaDto>>();
-            return huespedesReservaServices.GetListGuestReserv(reservaId, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<List<HuespedesReservaDto>> response = new ResponseQuery<List<HuespedesReservaDto>>();
+                return huespedesReservaServices.GetListGuestReserv(reservaId, response);
+            });
         }
 
         [HttpPost]
-        [Route("CreateGuestReserv")]
-        public IActionResult CreateGuestReserv(HuespedesReservaDto request)
+        [Route(nameof(HuespedesReservaController.CreateGuestReserv))]
+        public async Task<IActionResult> CreateGuestReserv(HuespedesReservaDto request)
         {
-            ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
-            huespedesReservaServices.CreateGuestReserv(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
+                huespedesReservaServices.CreateGuestReserv(request, response);
+                return Ok(response.Result);
+            });
         }
 
 

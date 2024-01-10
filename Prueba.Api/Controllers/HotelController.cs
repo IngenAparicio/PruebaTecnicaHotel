@@ -20,47 +20,64 @@ namespace PruebaWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetHotel")]
-        public ResponseQuery<HotelDto> GetHotel(int id)
+        [Route(nameof(HotelController.GetHotel))]
+        public async Task<ResponseQuery<HotelDto>> GetHotel(int id)
         {
-            ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            return hotelServices.GetHotel(id, response);            
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
+                return hotelServices.GetHotel(id, response);
+            });
+
         }
 
         [HttpGet]
-        [Route("GetListHotel")]
-        public IActionResult GetListHotel()
+        [Route(nameof(HotelController.GetListHotel))]
+        public async Task<IActionResult> GetListHotel()
         {
-            ResponseQuery<List<HotelDto>> response = new ResponseQuery<List<HotelDto>>();
-            hotelServices.GetListHotel(response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<List<HotelDto>> response = new ResponseQuery<List<HotelDto>>();
+                hotelServices.GetListHotel(response);
+                return Ok(response.Result);
+            });
+        }
+
+
+        [HttpPost]
+        [Route(nameof(HotelController.CreateHotel))]
+        public async Task<IActionResult> CreateHotel(HotelDto request)
+        {
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
+                hotelServices.CreateHotel(request, response);
+                return Ok(response.Result);
+            });
         }
 
         [HttpPost]
-        [Route("CreateHotel")]
-        public IActionResult CreateHotel(HotelDto request)
+        [Route(nameof(HotelController.UpdateHotel))]
+        public async Task<IActionResult> UpdateHotel(HotelDto request)
         {
-            ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.CreateHotel(request, response);
-            return Ok(response.Result);
-        }
-
-        [HttpPost]
-        [Route("UpdateHotel")]
-        public IActionResult UpdateHotel(HotelDto request)
-        {
-            ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.UpdateHotel(request, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
+                hotelServices.UpdateHotel(request, response);
+                return Ok(response.Result);
+            });
         }
 
         [HttpGet]
-        [Route("ActiveHotel")]
-        public IActionResult ActiveHotel(int id)
+        [Route(nameof(HotelController.ActiveHotel))]
+        public async Task<IActionResult> ActiveHotel(int id)
         {
-            ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
-            hotelServices.ActiveHotel(id, response);
-            return Ok(response.Result);
+            return await Task.Run(() =>
+            {
+                ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
+                hotelServices.ActiveHotel(id, response);
+                return Ok(response.Result);
+            });
         }
 
     }
