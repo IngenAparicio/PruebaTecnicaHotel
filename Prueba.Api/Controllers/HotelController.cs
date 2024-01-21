@@ -1,9 +1,11 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Prueba.Core.DTOs;
 using Prueba.Core.Interfaces;
 using Prueba.Core.Responses;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PruebaWebApi.Controllers
@@ -31,6 +33,7 @@ namespace PruebaWebApi.Controllers
 
         }
 
+
         [HttpGet]
         [Route(nameof(HotelController.GetListHotel))]
         public async Task<IActionResult> GetListHotel()
@@ -39,7 +42,8 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<List<HotelDto>> response = new ResponseQuery<List<HotelDto>>();
                 hotelServices.GetListHotel(response);
-                return Ok(response.Result);
+                return Ok(response);
+
             });
         }
 
@@ -52,11 +56,11 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
                 hotelServices.CreateHotel(request, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route(nameof(HotelController.UpdateHotel))]
         public async Task<IActionResult> UpdateHotel(HotelDto request)
         {
@@ -64,7 +68,7 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
                 hotelServices.UpdateHotel(request, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 
@@ -76,7 +80,7 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HotelDto> response = new ResponseQuery<HotelDto>();
                 hotelServices.ActiveHotel(id, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 

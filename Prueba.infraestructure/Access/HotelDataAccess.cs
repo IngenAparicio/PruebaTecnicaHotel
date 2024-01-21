@@ -27,31 +27,17 @@ namespace Prueba.infraestructure.Access
         public HotelDto GetHotel(int id)
         {
             Hotel hotel = new Hotel();
-            hotel = context.Hotel.FirstOrDefault(x => x.Id == id);
-            if (hotel != null)
-            {
-                return mapper.Map<HotelDto>(hotel);
-            }
-            else
-            {
-                return new HotelDto();
-            }
-            
+            hotel = context.Hotel.FirstOrDefault(x => x.Id == id);           
+            return mapper.Map<HotelDto>(hotel);
+
         }
 
         public List<HotelDto> GetListHotel()
         {
             
             List<Hotel> entidad = context.Hotel.ToList();
-            if(entidad != null && entidad.Count > 0)
-            {
-                return mapper.Map<List<HotelDto>>(entidad);
-            }
-            else
-            {
-                return new List<HotelDto>();
-            }
-                
+            return mapper.Map<List<HotelDto>>(entidad);
+
         }
 
         public HotelDto CreateHotel(HotelDto request)
@@ -90,10 +76,10 @@ namespace Prueba.infraestructure.Access
 
             var hotel = context.Hotel.FirstOrDefault(x => x.Id == id);
             Hotel newHotel = new Hotel();
-            newHotel = hotel;
-            newHotel.Activo = !hotel.Activo;
+            newHotel = hotel;            
             if (hotel != null)
             {
+                newHotel.Activo = !hotel.Activo;
                 // Campos a actualizar
                 FrameworkTypeUtility.SetProperties(newHotel, hotel);
 

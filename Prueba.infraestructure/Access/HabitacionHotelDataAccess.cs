@@ -27,31 +27,17 @@ namespace Prueba.infraestructure.Access
         public HabitacionHotelDto GetHotelRoom(int id)
         {
             HabitacionHotel Habitacionhotel = new HabitacionHotel();
-            Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == id);
-            if (Habitacionhotel != null)
-            {
-                return mapper.Map<HabitacionHotelDto>(Habitacionhotel);
-            }
-            else
-            {
-                return new HabitacionHotelDto();
-            }
-            
+            Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == id);            
+            return mapper.Map<HabitacionHotelDto>(Habitacionhotel);
+
         }
 
         public List<HabitacionHotelDto> GetListHotelroom()
         {
             
-            List<HabitacionHotel> entidad = context.HabitacionHotel.ToList();
-            if(entidad != null && entidad.Count > 0)
-            {
-                return mapper.Map<List<HabitacionHotelDto>>(entidad);
-            }
-            else
-            {
-                return new List<HabitacionHotelDto>();
-            }
-                
+            List<HabitacionHotel> entidad = context.HabitacionHotel.ToList();            
+            return mapper.Map<List<HabitacionHotelDto>>(entidad);
+
         }
 
         public HabitacionHotelDto CreateHotelRoom(HabitacionHotelDto request)
@@ -90,10 +76,10 @@ namespace Prueba.infraestructure.Access
 
             var Habitacionhotel = context.HabitacionHotel.FirstOrDefault(x => x.Id == id);
             HabitacionHotel HotelRoomTemp = new HabitacionHotel();
-            HotelRoomTemp = Habitacionhotel;
-            HotelRoomTemp.Activo = !Habitacionhotel.Activo;
+            HotelRoomTemp = Habitacionhotel;            
             if (Habitacionhotel != null)
             {
+                HotelRoomTemp.Activo = !Habitacionhotel.Activo;
                 // Campos a actualizar
                 FrameworkTypeUtility.SetProperties(HotelRoomTemp, Habitacionhotel);
 

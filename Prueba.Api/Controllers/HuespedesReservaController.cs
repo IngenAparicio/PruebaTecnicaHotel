@@ -49,7 +49,7 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HuespedesReservaDto> response = new ResponseQuery<HuespedesReservaDto>();
                 huespedesReservaServices.CreateGuestReserv(request, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 

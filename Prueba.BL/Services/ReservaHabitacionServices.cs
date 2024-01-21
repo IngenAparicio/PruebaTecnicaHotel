@@ -22,7 +22,16 @@ namespace Prueba.BL.Services
             try
             {
                 response.Result = reservaHabitacionDataAccess.GetRoomReservation(id);
-                response.Exitosos = true;
+                if (response.Result != null)
+                {
+                    response.Mensaje = "Registro Consultado Correctamente";
+                    response.Exitosos = true;
+                }
+                else
+                {
+                    response.Mensaje = "Elemento no Encontrado";
+                    response.Exitosos = false;
+                }
             }
             catch (Exception ex)
             {
@@ -38,7 +47,16 @@ namespace Prueba.BL.Services
             try
             {
                 response.Result = reservaHabitacionDataAccess.GetListRoomReservation(reservaId);
-                response.Exitosos = true;
+                if (response.Result.Count != 0)
+                {
+                    response.Mensaje = "Registros Consultados Correctamente";
+                    response.Exitosos = true;
+                }
+                else
+                {
+                    response.Mensaje = "Elementos no Encontrados";
+                    response.Exitosos = false;
+                }
             }
             catch (Exception ex)
             {
@@ -55,6 +73,7 @@ namespace Prueba.BL.Services
             {
                 response.Result = reservaHabitacionDataAccess.CreateRoomReservation(request);
                 response.Exitosos = true;
+                response.Mensaje = "Registro Creado Exitosamente";
             }
             catch (Exception ex)
             {

@@ -13,6 +13,6 @@ namespace Prueba.Core.Responses
         [DataMember]
         public T Result { get; set; }
         [DataMember]
-        public string Mensaje { get; set; }
+        public string Mensaje { get; set; }        
     }
 }

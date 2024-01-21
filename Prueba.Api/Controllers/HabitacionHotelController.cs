@@ -38,7 +38,7 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<List<HabitacionHotelDto>> response = new ResponseQuery<List<HabitacionHotelDto>>();
                 habitacionHotelServices.GetListHotelroom(response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 
@@ -50,19 +50,19 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
                 habitacionHotelServices.CreateHotelRoom(request, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 
-        [HttpPost]
-        [Route(nameof(HabitacionHotelController.EditHotelRoom))]
-        public async Task<IActionResult> EditHotelRoom(HabitacionHotelDto request)
+        [HttpPut]
+        [Route(nameof(HabitacionHotelController.UpdateHotelRoom))]
+        public async Task<IActionResult> UpdateHotelRoom(HabitacionHotelDto request)
         {
             return await Task.Run(() =>
             {
                 ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
                 habitacionHotelServices.EditHotelRoom(request, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 
@@ -74,7 +74,7 @@ namespace PruebaWebApi.Controllers
             {
                 ResponseQuery<HabitacionHotelDto> response = new ResponseQuery<HabitacionHotelDto>();
                 habitacionHotelServices.ActiveHotelRoom(id, response);
-                return Ok(response.Result);
+                return Ok(response);
             });
         }
 

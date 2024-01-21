@@ -27,30 +27,16 @@ namespace Prueba.infraestructure.Access
         public HuespedesReservaDto GetGuestReserv(int id)
         {
             HuespedesReserva reservaHuespedes = new HuespedesReserva();
-            reservaHuespedes = context.HuespedesReserva.FirstOrDefault(x => x.Id == id);
-            if (reservaHuespedes != null)
-            {
-                return mapper.Map<HuespedesReservaDto>(reservaHuespedes);
-            }
-            else
-            {
-                return new HuespedesReservaDto();
-            }
-            
+            reservaHuespedes = context.HuespedesReserva.FirstOrDefault(x => x.Id == id);            
+            return mapper.Map<HuespedesReservaDto>(reservaHuespedes);
+
         }
 
         public List<HuespedesReservaDto> GetListGuestReserv(int reservaId)
         {
-            List<HuespedesReserva> entidad = context.HuespedesReserva.Where(x => x.ReservaId == reservaId).ToList();            
-            if(entidad != null && entidad.Count > 0)
-            {
-                return mapper.Map<List<HuespedesReservaDto>>(entidad);
-            }
-            else
-            {
-                return new List<HuespedesReservaDto>();
-            }
-                
+            List<HuespedesReserva> entidad = context.HuespedesReserva.Where(x => x.ReservaId == reservaId).ToList();                        
+            return mapper.Map<List<HuespedesReservaDto>>(entidad);
+
         }
 
         public HuespedesReservaDto CreateGuestReserv(HuespedesReservaDto request)
