@@ -17,5 +17,7 @@ namespace Prueba.Core.Interfaces
 
         public ResponseQuery<ReservaHabitacionDto> CreateRoomReservation(ReservaHabitacionDto request, ResponseQuery<ReservaHabitacionDto> response);
 
+        public ResponseQuery<List<HabitacionFiltradaDto>> GetRoomFiltered(DateTime fechaInicial, DateTime fechaFinal, int cantidadPersonas, string hotelCiudad, ResponseQuery<List<HabitacionFiltradaDto>> response);
+
     }
 }

@@ -24,12 +24,12 @@ namespace Prueba.BL.Services
                 response.Result = hotelDataAccess.GetHotel(id);
                 if(response.Result != null)
                 {
-                    response.Mensaje = "Registro Consultado Correctamente";
+                    response.Mensaje = "record Consulted correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elemento no Encontrado";
+                    response.Mensaje = "Element not found";
                     response.Exitosos = false;
                 }
                 
@@ -50,12 +50,12 @@ namespace Prueba.BL.Services
                 response.Result = hotelDataAccess.GetListHotel();
                 if (response.Result.Count != 0)
                 {
-                    response.Mensaje = "Registros Consultados Correctamente";
+                    response.Mensaje = "Records Consulted Correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elementos no Encontrados";
+                    response.Mensaje = "Elements not found";
                     response.Exitosos = false;
                 }
             }
@@ -74,7 +74,7 @@ namespace Prueba.BL.Services
             {
                 response.Result = hotelDataAccess.CreateHotel(request);
                 response.Exitosos = true;
-                response.Mensaje = "Hotel Creado Exitosamente";
+                response.Mensaje = "Hotel successfully Created";
             }
             catch (Exception ex)
             {
@@ -92,12 +92,12 @@ namespace Prueba.BL.Services
                 response.Result = hotelDataAccess.UpdateHotel(request);
                 if (response.Result != null)
                 {
-                    response.Mensaje = "Registro se ha actualizado Correctamente";
+                    response.Mensaje = "Record successfully updated";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "El registro No existe";
+                    response.Mensaje = "The record doesn't exist";
                     response.Exitosos = false;
                 }
             }
@@ -117,12 +117,12 @@ namespace Prueba.BL.Services
                 response.Result = hotelDataAccess.ActiveHotel(id);
                 if (response.Result.Id != 0)
                 {
-                    response.Mensaje = response.Result.Activo == true ? "Registro Activado Correctamente" : "Registro Desactivado Correctamente";
+                    response.Mensaje = response.Result.Activo == true ? "record successfully Enabled" : "record successfully Disabled";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "El registro No existe";
+                    response.Mensaje = "The record doesn't exist";
                     response.Exitosos = false;
                 }
             }

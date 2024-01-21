@@ -27,14 +27,14 @@ namespace Prueba.infraestructure.Access
         public ReservaHabitacionDto GetRoomReservation(int id)
         {
             ReservaHabitacion reservaHabitacion = new ReservaHabitacion();
-            reservaHabitacion = context.ReservaHabitacion.FirstOrDefault(x => x.Id == id);            
+            reservaHabitacion = context.ReservaHabitacion.FirstOrDefault(x => x.Id == id);
             return mapper.Map<ReservaHabitacionDto>(reservaHabitacion);
 
         }
 
         public List<ReservaHabitacionDto> GetListRoomReservation(int reservaId)
-        {            
-            List<ReservaHabitacion> entidad = context.ReservaHabitacion.Where(x => x.ReservaId == reservaId).ToList();                        
+        {
+            List<ReservaHabitacion> entidad = context.ReservaHabitacion.Where(x => x.ReservaId == reservaId).ToList();
             return mapper.Map<List<ReservaHabitacionDto>>(entidad);
 
         }
@@ -46,6 +46,46 @@ namespace Prueba.infraestructure.Access
             context.SaveChanges();
             var reservaHabitacionResult = mapper.Map<ReservaHabitacionDto>(reservaHabitacion);
             return reservaHabitacionResult;
+        }
+
+        public List<HabitacionFiltradaDto> GetRoomFiltered(DateTime fechaInicial, DateTime fechaFinal, int cantidadPersonas, string hotelCiudad)
+        {
+            if (fechaInicial < DateTime.Now)
+            {
+                return new List<HabitacionFiltradaDto> { null };
+            }
+            try
+            {
+                var reservasHabitacion = context.ReservaHabitacion.Where(x => x.FechaInicio >= fechaInicial.Date && x.FechaFin <= fechaFinal.Date).Select(x => x.HabitacionId).ToList();
+                var ListHabitaciones = context.HabitacionHotel.Include(x => x.Hotel)
+                .Where(x => x.Hotel.Ciudad.ToLower().Equals(hotelCiudad.ToLower()) && x.Capacidad == cantidadPersonas && x.Activo == true && x.Hotel.Activo == true).ToList();
+
+                if(ListHabitaciones.Count > 0)
+                {
+                    ListHabitaciones.RemoveAll(x => reservasHabitacion.Contains(x.Id));
+                    List<HabitacionFiltradaDto> habitacionesFiltradas = ListHabitaciones.Select(entity => new HabitacionFiltradaDto()
+                    {
+                        HotelNombre = entity.Hotel.Nombre,
+                        HotelCiudad = entity.Hotel.Ciudad,
+                        HabitacionNombre = entity.Nombre,
+                        HabitacionCapacidad = entity.Capacidad,
+                        HabitacionPrecio = entity.ValorTotal
+
+                    }).ToList();
+                    return habitacionesFiltradas;
+                }
+                else
+                {
+                    return new List<HabitacionFiltradaDto> { null };
+                }
+               
+
+            }
+            catch (Exception)
+            {
+                return new List<HabitacionFiltradaDto> { null };
+            }
+
         }
 
     }

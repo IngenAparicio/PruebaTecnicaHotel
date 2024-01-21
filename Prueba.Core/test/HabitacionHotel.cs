@@ -1,9 +1,11 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace Prueba.Core.DTOs
+#nullable disable
+
+namespace Prueba.Core.test
 {
-    public class HabitacionHotelDto
+    public partial class HabitacionHotel
     {
         public int Id { get; set; }
         public int? Piso { get; set; }

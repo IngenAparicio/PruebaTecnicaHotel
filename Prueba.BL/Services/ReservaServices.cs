@@ -24,12 +24,12 @@ namespace Prueba.BL.Services
                 response.Result = reservaDataAccess.GetReservation(id);
                 if (response.Result != null)
                 {
-                    response.Mensaje = "Registro Consultado Correctamente";
+                    response.Mensaje = "record Consulted correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elemento no Encontrado";
+                    response.Mensaje = "Element not found";
                     response.Exitosos = false;
                 }
             }
@@ -50,12 +50,12 @@ namespace Prueba.BL.Services
                 response.Result = reservaDataAccess.GetListReservation(hotelId);
                 if (response.Result.Count != 0)
                 {
-                    response.Mensaje = "Registros Consultados Correctamente";
+                    response.Mensaje = "Records Consulted Correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elementos no Encontrados";
+                    response.Mensaje = "Elements not found";
                     response.Exitosos = false;
                 }
             }
@@ -74,7 +74,7 @@ namespace Prueba.BL.Services
             {
                 response.Result = reservaDataAccess.CreateReservation(request);
                 response.Exitosos = true;
-                response.Mensaje = "Reserva Creada Exitosamente";
+                response.Mensaje = "Reservation successfully Created";
             }
             catch (Exception ex)
             {

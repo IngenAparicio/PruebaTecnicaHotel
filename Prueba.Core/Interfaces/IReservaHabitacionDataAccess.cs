@@ -16,6 +16,7 @@ namespace Prueba.Core.Interfaces
 
         public ReservaHabitacionDto CreateRoomReservation(ReservaHabitacionDto request);
 
+        public List<HabitacionFiltradaDto> GetRoomFiltered(DateTime fechaInicial, DateTime fechaFinal, int cantidadPersonas, string hotelCiudad);
 
     }
 }

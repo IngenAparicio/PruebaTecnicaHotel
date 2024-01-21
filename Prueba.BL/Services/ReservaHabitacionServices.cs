@@ -24,12 +24,12 @@ namespace Prueba.BL.Services
                 response.Result = reservaHabitacionDataAccess.GetRoomReservation(id);
                 if (response.Result != null)
                 {
-                    response.Mensaje = "Registro Consultado Correctamente";
+                    response.Mensaje = "record Consulted correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elemento no Encontrado";
+                    response.Mensaje = "Element not found";
                     response.Exitosos = false;
                 }
             }
@@ -49,12 +49,12 @@ namespace Prueba.BL.Services
                 response.Result = reservaHabitacionDataAccess.GetListRoomReservation(reservaId);
                 if (response.Result.Count != 0)
                 {
-                    response.Mensaje = "Registros Consultados Correctamente";
+                    response.Mensaje = "Records Consulted Correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elementos no Encontrados";
+                    response.Mensaje = "Elements not found";
                     response.Exitosos = false;
                 }
             }
@@ -73,11 +73,37 @@ namespace Prueba.BL.Services
             {
                 response.Result = reservaHabitacionDataAccess.CreateRoomReservation(request);
                 response.Exitosos = true;
-                response.Mensaje = "Registro Creado Exitosamente";
+                response.Mensaje = "Record successfully Created";
             }
             catch (Exception ex)
             {
                 response.Result = new ReservaHabitacionDto();
+                response.Mensaje = ex.Message;
+                response.Exitosos = false;
+            }
+            return response;
+        }
+
+        public ResponseQuery<List<HabitacionFiltradaDto>> GetRoomFiltered(DateTime fechaInicial, DateTime fechaFinal, int cantidadPersonas, string hotelCiudad, ResponseQuery<List<HabitacionFiltradaDto>> response)
+        {
+            try
+            {
+                response.Result = reservaHabitacionDataAccess.GetRoomFiltered(fechaInicial, fechaFinal, cantidadPersonas, hotelCiudad);
+                if (response.Result[0] == null || response.Result.Count == 0)
+                {
+                    response.Mensaje = "There are no Hotel rooms available for this city, number of guests or dates";
+                    response.Exitosos = false;
+                }
+                else
+                {
+                    response.Mensaje = "Records Consulted Correctly";
+                    response.Exitosos = true;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Result = new List<HabitacionFiltradaDto>();
                 response.Mensaje = ex.Message;
                 response.Exitosos = false;
             }

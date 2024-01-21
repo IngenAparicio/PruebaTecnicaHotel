@@ -66,7 +66,7 @@ namespace PruebaWebApi.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpPut]
         [Route(nameof(HabitacionHotelController.ActiveHotelRoom))]
         public async Task<IActionResult> ActiveHotelRoom(int id)
         {

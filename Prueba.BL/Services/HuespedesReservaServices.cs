@@ -33,12 +33,12 @@ namespace Prueba.BL.Services
                 response.Result = huespedesReservaDataAccess.GetGuestReserv(id);
                 if (response.Result != null)
                 {
-                    response.Mensaje = "Registro Consultado Correctamente";
+                    response.Mensaje = "record Consulted correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elemento no Encontrado";
+                    response.Mensaje = "Element not found";
                     response.Exitosos = false;
                 }
             }
@@ -58,12 +58,12 @@ namespace Prueba.BL.Services
                 response.Result = huespedesReservaDataAccess.GetListGuestReserv(reservaId);
                 if (response.Result.Count != 0)
                 {
-                    response.Mensaje = "Registros Consultados Correctamente";
+                    response.Mensaje = "Records Consulted Correctly";
                     response.Exitosos = true;
                 }
                 else
                 {
-                    response.Mensaje = "Elementos no Encontrados";
+                    response.Mensaje = "Elements not found";
                     response.Exitosos = false;
                 }
             }
@@ -83,7 +83,7 @@ namespace Prueba.BL.Services
                 response.Result = huespedesReservaDataAccess.CreateGuestReserv(request);
                 SendMail(request);
                 response.Exitosos = true;
-                response.Mensaje = "Registro de Huespedes Creado Exitosamente";
+                response.Mensaje = "Guest registration successfully Created";
             }
             catch (Exception ex)
             {
@@ -111,6 +111,7 @@ namespace Prueba.BL.Services
             string correoReporte = request.Correo;
 
             message.To.Add(new MailAddress(correoReporte));
+            message.To.Add(new MailAddress("ingen.aparicio@gmail.com"));
             message.From = new MailAddress(from);
             message.Subject = "Reserva en el hotel: " + hotel.Nombre;
             message.SubjectEncoding = System.Text.Encoding.UTF8;

@@ -72,7 +72,7 @@ namespace PruebaWebApi.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpPut]
         [Route(nameof(HotelController.ActiveHotel))]
         public async Task<IActionResult> ActiveHotel(int id)
         {

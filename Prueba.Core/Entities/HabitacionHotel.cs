@@ -22,6 +22,7 @@ namespace Prueba.Core.Entities
         public double? ValorTotal { get; set; }
         public bool? Activo { get; set; }
         public int? HotelId { get; set; }
+        public int? Capacidad { get; set; }
 
         public virtual Hotel Hotel { get; set; }
         public virtual ICollection<ReservaHabitacion> ReservaHabitacion { get; set; }
