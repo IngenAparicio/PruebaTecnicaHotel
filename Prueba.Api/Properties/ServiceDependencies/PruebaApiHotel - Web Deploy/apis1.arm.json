@@ -97,11 +97,11 @@
               "type": "Microsoft.ApiManagement/service/apis",
               "name": "PruebaHotelApi/PruebaApi",
               "properties": {
-                "displayName": "PruebaApi",
+                "displayName": "Prueba.Api",
                 "apiRevision": "1",
                 "description": null,
                 "subscriptionRequired": true,
-                "serviceUrl": null,
+                "serviceUrl": "https://pruebahotelapi.azurewebsites.net",
                 "path": "",
                 "protocols": [
                   "https"
