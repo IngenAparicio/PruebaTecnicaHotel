@@ -89,7 +89,7 @@ namespace Prueba.BL.Services
             try
             {
                 response.Result = reservaHabitacionDataAccess.GetRoomFiltered(fechaInicial, fechaFinal, cantidadPersonas, hotelCiudad);
-                if (response.Result[0] == null || response.Result.Count == 0)
+                if (response.Result.Count == 0 ||  response.Result[0] == null)
                 {
                     response.Mensaje = "There are no Hotel rooms available for this city, number of guests or dates";
                     response.Exitosos = false;
